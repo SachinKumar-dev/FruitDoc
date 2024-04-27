@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_classification_mobilenet/Views/loginScreen.dart';
 import '../../Controllers/userIdController.dart';
 import '../bottomNavBar.dart';
-import '../splashScreen.dart';
 
 class AuthChangeState extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -20,7 +20,7 @@ class AuthChangeState extends StatelessWidget {
           if (uid!.isNotEmpty) {
             return const BottomNavigationBarExample();
           } else {
-            return const SplashScreen();
+            return LogInScreen();
           }
         },
       ),

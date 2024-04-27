@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_classification_mobilenet/Views/splashScreen.dart';
 import 'Controllers/logInController.dart';
 import 'Controllers/signUpController.dart';
 import 'Controllers/userIdController.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: lightGreen),
       ),
-      home: AuthChangeState(),
+      home: const SplashScreen(),
     );
   }
 }

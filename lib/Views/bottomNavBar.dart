@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_classification_mobilenet/Ui_Helper/colorHelper.dart';
 import 'package:image_classification_mobilenet/Ui_Helper/styleHelper.dart';
 import 'package:image_classification_mobilenet/Views/UserProfilePage.dart';
@@ -36,32 +37,45 @@ class _BottomNavigationBarExampleState
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _selectedIndex == 0 ? AppBar(
-        automaticallyImplyLeading: false,
-        title: Center(child: styleText(text: "FruitDoc",size: 25)),
-        backgroundColor: lightGreen,
-      ) : null,
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: lightGreen,
-        items:  const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_max_rounded),
-            label: 'HomePage',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: "Profile",
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+    return WillPopScope(
+      onWillPop: () async {
+        if (_selectedIndex > 0) {
+          setState(() {
+            _selectedIndex = 0;
+          });
+          return false;
+        }
+        SystemNavigator.pop();
+        return false;
+      },
+      child: Scaffold(
+        appBar: _selectedIndex == 0 ? AppBar(
+          automaticallyImplyLeading: false,
+          title: Center(child: styleText(text: "FruitDoc",size: 25)),
+          backgroundColor: lightGreen,
+        ) : null,
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: lightGreen,
+          items:  const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_max_rounded),
+              label: 'HomePage',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline),
+              label: "Profile",
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

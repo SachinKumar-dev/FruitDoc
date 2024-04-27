@@ -5,7 +5,6 @@ import '../../Controllers/logInController.dart';
 import '../Controllers/userIdController.dart';
 import '../Ui_Helper/colorHelper.dart';
 import '../Ui_Helper/styleHelper.dart';
-import 'bottomNavBar.dart';
 
 
 class LogInScreen extends StatelessWidget {
@@ -125,17 +124,7 @@ class LogInScreen extends StatelessWidget {
                                 onPressed: () async {
                                   bool check = logInCtrl.checkFields();
                                   if (check) {
-                                    // Perform the login operation
-                                    bool isSuccessLogin =
                                     await logInCtrl.logIn(context);
-
-                                    if (isSuccessLogin) {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const BottomNavigationBarExample()));
-                                      logInCtrl.email.clear();
-                                      logInCtrl.password.clear();
-                                    } else {
-                                      print("error during login");
-                                    }
                                   }
                                 },
                                 child: styleText(text: "LogIn"),

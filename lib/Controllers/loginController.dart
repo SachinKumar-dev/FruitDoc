@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import '../Ui_Helper/colorHelper.dart';
+import '../Views/bottomNavBar.dart';
 
 class LogInController extends GetxController {
   TextEditingController email = TextEditingController();
@@ -35,15 +36,17 @@ class LogInController extends GetxController {
         password: password.text.trim(),
       );
       // Dismiss the dialog after successful login
-      Get.back(); // This will dismiss the dialog
+      Get.back();
       String? currentUser = credential.user?.email;
       userController.setEmail(currentUser);
       print(credential);
       // Get the user's uid
       String? uid = credential.user?.uid;
       userController.setUid(uid);
-
       isLoggedIn = true;
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const BottomNavigationBarExample()));
+      email.clear();
+      password.clear();
       Get.snackbar("Success", "Logged In Successfully", colorText: Colors.white);
     } catch (e) {
       // Dismiss the dialog after an error

@@ -61,7 +61,6 @@ class _GalleryScreenState extends State<GalleryScreen> {
   @override
   Widget build(BuildContext context) {
     double Height = MediaQuery.of(context).size.height;
-    double Width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Column(
         children: [
